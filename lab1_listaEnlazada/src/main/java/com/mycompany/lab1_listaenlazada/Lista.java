@@ -4,6 +4,8 @@
  */
 package com.mycompany.lab1_listaenlazada;
 
+import static com.mycompany.lab1_listaenlazada.Ejer3.listaNumeros;
+
 /**
  *
  * @author laura
@@ -64,6 +66,7 @@ public class Lista<T> {
     }
     elemento++; // Se incrementa el contador de elementos
   }
+    
 
   // Agrega un nodo en un índice específico
   public void agregarEnIndice(int indice, T dato) {

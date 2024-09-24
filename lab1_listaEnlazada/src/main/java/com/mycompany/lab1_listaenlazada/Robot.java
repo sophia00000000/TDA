@@ -13,17 +13,23 @@ public class Robot {
     private int porcentajeVida;
 
     // Constructor
-    public Robot(int id, String tipo, int porcentajeVida) {
+    public Robot(int id, int porcentajeVida) {
         this.id = id;
         this.porcentajeVida = (int)(Math.random() * 91) + 10;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPorcentajeVida(int porcentajeVida) {
+        this.porcentajeVida = porcentajeVida;
     }
 
     // Getters
     public int getId() {
         return id;
     }
-
-
 
     public int getPorcentajeVida() {
         return porcentajeVida;

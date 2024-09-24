@@ -11,9 +11,9 @@ package com.mycompany.lab1_listaenlazada;
 public class Ejer4 {
     public static void ejecutar() {
 
-        ListaEncadenada lista = new ListaEncadenada();
+        ListaContigua lista = new ListaContigua();
          // Verificar si la lista está vacía
-        System.out.println("¿La lista está vacía?: " + lista.estaVacia());
+        System.out.println("La lista esta vacia?: " + lista.estaVacia());
 
          // Insertar elementos en la lista
         lista.insertarFinal(10);
@@ -22,7 +22,7 @@ public class Ejer4 {
         lista.mostrarLista();  // Debería imprimir: 10 20 30
 
          // Obtener el tamaño de la lista
-        System.out.println("Número de elementos en la lista: " + lista.obtenerTamaño());
+        System.out.println("Numero de elementos en la lista: " + lista.obtenerTamaño());
 
          // Eliminar el último elemento
         lista.eliminarFinal();

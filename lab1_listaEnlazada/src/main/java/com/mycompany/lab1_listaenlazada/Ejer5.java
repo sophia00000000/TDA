@@ -4,42 +4,37 @@
  */
 package com.mycompany.lab1_listaenlazada;
 
-import static com.mycompany.lab1_listaenlazada.Ejer3.insertarOrdenado;
-import static com.mycompany.lab1_listaenlazada.Ejer3.listaNumeros;
-
 /**
  *
  * @author laura
  */
 public class Ejer5 {
-    static Lista<Integer> listaNumeros1;
-    static Lista<Integer> listaNumeros2;
-    static ListaEncadenada listaNumeros3;
+    static ListaContigua listaNumeros1;
+    static ListaContigua listaNumeros2;
+    static Lista<Integer> listaNumeros3;
     static int tamanio1;
     static int tamanio2;
     
     public Ejer5() {
-        listaNumeros1 = new Lista();
-        listaNumeros2 = new Lista();
-        listaNumeros3 = new ListaEncadenada();
+        listaNumeros1 = new ListaContigua();
+        listaNumeros2 = new ListaContigua();
+        listaNumeros3 = new Lista();
         tamanio1=(int)(Math.random() * 21) + 10;
         tamanio2=(int)(Math.random()* 36) + 5;
-
     }
-    
-    
+        
     
     public static void ejecutar(){
         llenarListas();
         System.out.println("Lista 1:");
-        listaNumeros1.mostrar();
+        listaNumeros1.mostrarLista();
 
         System.out.println("Lista 2:");
-        listaNumeros2.mostrar();
+        listaNumeros2.mostrarLista();
         
         System.out.println("Lista 3:");
         crearLista3(listaNumeros1, listaNumeros2, 0, listaNumeros3);
-        listaNumeros2.mostrar();
+        listaNumeros3.mostrar();
     }
     
     
@@ -48,32 +43,19 @@ public class Ejer5 {
         tamanio2= (int)(Math.random()* 36) + 5 ;
 
         llenarLista(listaNumeros1 , tamanio1);
-        llenarLista(listaNumeros2, tamanio2);
-
-        
+        llenarLista(listaNumeros2, tamanio2);     
     }
     
-    public static void llenarLista(Lista<Integer> lista, int tamanio){
+    
+    public static void llenarLista(ListaContigua lista, int tamanio){
         for(int i=0; i< tamanio ; i++){
           int n=(int)(Math.random() * 501) + 50;
-          insertarOrdenado(lista , n);
+          lista.insertarFinal(n);
         }
     }
  
     
-    public static void insertarOrdenado(Lista<Integer> lista, int n){
-        if (lista.esVacia()){
-            lista.agregarAlInicio(n);
-        }else{
-            int i=0;
-            while (i < lista.getElemento() && lista.buscaPorIndice(i) <= n) {
-                i++;
-            }
-            lista.agregarEnIndice(i, n);
-        }
-    }
-    
-    public ListaEncadenada crearLista3(Lista<Integer> lista1, Lista<Integer> lista2, int indice, ListaEncadenada lista3) {
+    public static Lista<Integer> crearLista3(ListaContigua lista1, ListaContigua lista2, int indice, Lista<Integer> lista3) {
         // Condición base: si se recorren ambas listas completamente
         if (indice >= lista1.obtenerTamaño() && indice >= lista2.obtenerTamaño()) {
             return lista3;
@@ -81,17 +63,17 @@ public class Ejer5 {
 
         // Revisar la lista 1 para los números impares que no están en la lista 2
         if (indice < lista1.obtenerTamaño()) {
-            int num1 = lista1.obtenerElemento(indice);
+            int num1 = lista1.lista[indice];
             if (num1 % 2 != 0 && !existeEnLista(num1, lista2)) {
-                lista3.insertarFinal(num1); // Insertar en lista3 si es impar y no está en lista2
+                lista3.agregarAlFinal(num1); // Insertar en lista3 si es impar y no está en lista2
             }
         }
 
         // Revisar la lista 2 para los números pares que no están en la lista 1
         if (indice < lista2.obtenerTamaño()) {
-            int num2 = lista2.obtenerElemento(indice);
+            int num2 = lista2.lista[indice];
             if (num2 % 2 == 0 && !existeEnLista(num2, lista1)) {
-                lista3.insertarFinal(num2); // Insertar en lista3 si es par y no está en lista1
+                lista3.agregarAlFinal(num2); // Insertar en lista3 si es par y no está en lista1
             }
         }
 
@@ -100,9 +82,9 @@ public class Ejer5 {
     }
 
     // Método auxiliar para verificar si un número está en la lista
-    private boolean existeEnLista(int num, ListaEncadenada lista) {
+    private static boolean existeEnLista(int num, ListaContigua lista) {
         for (int i = 0; i < lista.obtenerTamaño(); i++) {
-            if (lista.obtenerElemento(i) == num) {
+            if (lista.lista[i] == num) {
                 return true;
             }
         }
